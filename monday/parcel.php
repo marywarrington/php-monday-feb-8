@@ -35,7 +35,11 @@ class Parcel
     }
 
     function getVolume() {
-      return $this->length * $this->width * $this->height;
+      return $this->getLength() * $this->getWidth() * $this->getHeight();
+    }
+
+    function costToShip() {
+      return $this->getVolume() * .6;
     }
 }
 
@@ -49,17 +53,20 @@ class Parcel
   <body>
       <h1>Shipping Costs</h1>
       <?php
-      $get_weight = $parcel->getWeight();
-      $get_length = $parcel->getLength();
-      $get_width = $parcel->getWidth();
-      $get_height = $parcel->getHeight();
-      $get_volume = $parcel->getVolume();
+      $get_weight = $_GET["weight"];
+      $get_length = $_GET["length"];
+      $get_width = $_GET["width"];
+      $get_height = $_GET["height"];
+      $new_parcel = new Parcel($_GET["weight"],$_GET["length"], $_GET["width"], $_GET["height"]);
+      $get_volume = $new_parcel->getVolume();
+      $get_price = $new_parcel->costToShip();
 
       echo "<p>Your parcel weight is: $get_weight </p>
       <p>Your parcel length is: $get_length </p>
       <p>Your parcel width is: $get_width </p>
       <p>Your parcel height is: $get_height </p>
-      <p>Your parcel volume is: $get_volume </p>"
+      <p>Your parcel volume is: $get_volume </p>
+      <p>Your cost to ship: $$get_price </p>"
 
       ?>
   </body>
