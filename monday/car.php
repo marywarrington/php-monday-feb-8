@@ -1,23 +1,44 @@
 <?php
 class Car
 {
-    public $make_model;
+    private $make_model;
     private $price;
-    public $miles;
-    public $color;
-    public $condition;
+    private $miles;
+    private $color;
+    private $condition;
 
-    function __construct($make_model, $car_price, $miles, $color, $condition = "Used")
+    function __construct($get_make_model, $car_price, $get_miles, $get_color, $get_condition = "Used")
     {
-        $this->make_model = $make_model;
+        $this->make_model = $get_make_model;
         $this->price = $car_price;
-        $this->miles = $miles;
-        $this->color = $color;
-        $this->condition = $condition;
+        $this->miles = $get_miles;
+        $this->color = $get_color;
+        $this->condition = $get_condition;
     }
+
     function getPrice()
     {
         return $this->price;
+    }
+
+    function getMakeModel()
+    {
+        return $this->make_model;
+    }
+
+    function getMiles()
+    {
+        return $this->miles;
+    }
+
+    function getColor()
+    {
+        return $this->color;
+    }
+
+    function getCondition()
+    {
+        return $this->condition;
     }
 }
 
@@ -47,11 +68,17 @@ foreach ($cars as $car) {
         <?php
             foreach ($cars_matching_search as $car) {
               $car_price = $car->getPrice();
-                echo "<li> $car->make_model </li>";
+              $get_make_model = $car->getMakeModel();
+              $get_miles = $car->getMiles();
+              $get_color = $car->getColor();
+              $get_condition = $car->getCondition();
+
+                echo "<li> $get_make_model </li>";
                 echo "<ul>";
                     echo "<li> $$car_price </li>";
-                    echo "<li> Miles: $car->miles </li>";
-                    echo "<li> Condition: $car->condition </li>";
+                    echo "<li> Miles: $get_miles </li>";
+                    echo "<li> Condition: $get_condition </li>";
+                    echo "<li> Color: $get_color </li>";
                 echo "</ul>";
             }
         ?>
