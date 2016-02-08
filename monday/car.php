@@ -73,7 +73,7 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
-        if (!(empty($cars_matching_search))) {
+        if ($cars_matching_search) {
             foreach ($cars_matching_search as $car) {
                 $car_price = $car->getPrice();
                 $get_make_model = $car->getMakeModel();
