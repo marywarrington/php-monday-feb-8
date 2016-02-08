@@ -61,7 +61,6 @@ foreach ($cars as $car) {
     if ($car->getPrice() < $_GET["price"] && $car->getMiles() < $_GET["miles"]) {
         array_push($cars_matching_search, $car);
     }
-
 }
 ?>
 
@@ -74,23 +73,27 @@ foreach ($cars as $car) {
     <h1>Your Car Dealership</h1>
     <ul>
         <?php
+        if (!(empty($cars_matching_search))) {
             foreach ($cars_matching_search as $car) {
-              $car_price = $car->getPrice();
-              $get_make_model = $car->getMakeModel();
-              $get_miles = $car->getMiles();
-              $get_color = $car->getColor();
-              $get_condition = $car->getCondition();
-              $get_image_path = $car->getImagePath();
+                $car_price = $car->getPrice();
+                $get_make_model = $car->getMakeModel();
+                $get_miles = $car->getMiles();
+                $get_color = $car->getColor();
+                $get_condition = $car->getCondition();
+                $get_image_path = $car->getImagePath();
 
-                echo "<li> $get_make_model </li>";
-                echo "<ul>";
-                    echo "<li> $$car_price </li>";
-                    echo "<li> Miles: $get_miles </li>";
-                    echo "<li> Condition: $get_condition </li>";
-                    echo "<li> Color: $get_color </li>";
-                    echo "<li><img src='$get_image_path'></li>";
-                echo "</ul>";
-            }
+                  echo "<li> $get_make_model </li>";
+                  echo "<ul>";
+                      echo "<li> $$car_price </li>";
+                      echo "<li> Miles: $get_miles </li>";
+                      echo "<li> Condition: $get_condition </li>";
+                      echo "<li> Color: $get_color </li>";
+                      echo "<li><img src='$get_image_path'></li>";
+                  echo "</ul>";
+                }
+              } else {
+                  echo "<li> Sorry, no cars match </li>";
+              }
         ?>
     </ul>
 </body>
